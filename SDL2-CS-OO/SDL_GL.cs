@@ -33,8 +33,6 @@ namespace SDL2_CS_OO
 
             IntPtr Result = SDL.SDL_GL_GetCurrentContext();
 
-            Util.ThrowIfPointerZero(Result);
-
             return new SDL_GLContext(Result);
 
         }
@@ -54,8 +52,6 @@ namespace SDL2_CS_OO
         {
 
             IntPtr Result = SDL.SDL_GL_GetCurrentWindow();
-
-            Util.ThrowIfPointerZero(Result);
 
             return new SDLWindow(Result);
 

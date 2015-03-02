@@ -13,21 +13,27 @@ namespace SDL2_CS_OO.Mixer
         public WAV(string File)
         {
 
-            Util.ThrowIfPointerZero(SDL_mixer.Mix_LoadWAV(File));
+            myPtr = SDL_mixer.Mix_LoadWAV(File);
+
+            CheckPtr();
 
         }
 
         public WAV(IntPtr Src, bool Freesrc)
         {
 
-            Util.ThrowIfPointerZero(SDL_mixer.Mix_LoadWAV_RW(Src, Convert.ToInt32(Freesrc)));
+            myPtr = SDL_mixer.Mix_LoadWAV_RW(Src, Convert.ToInt32(Freesrc));
+
+            CheckPtr();
 
         }
 
         public WAV(byte[] Mem)
         {
 
-            Util.ThrowIfPointerZero(SDL_mixer.Mix_QuickLoad_WAV(Mem));
+            myPtr = SDL_mixer.Mix_QuickLoad_WAV(Mem);
+
+            CheckPtr();
 
         }
 

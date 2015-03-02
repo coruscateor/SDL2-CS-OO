@@ -26,23 +26,20 @@ namespace SDL2_CS_OO
 
         }
 
-        public static SDL.SDL_bool ConvertTo(bool TheBool)
+        public static SDL.SDL_bool ConvertTo(bool Bool)
         {
 
-            if(TheBool)
+            if(Bool)
                 return SDL.SDL_bool.SDL_TRUE;
 
             return SDL.SDL_bool.SDL_FALSE;
 
         }
 
-        public static bool ConvertFrom(SDL.SDL_bool TheBool)
+        public static bool ConvertFrom(SDL.SDL_bool Bool)
         {
 
-            if(TheBool == SDL.SDL_bool.SDL_TRUE)
-                return true;
-
-            return false;
+            return Bool == SDL.SDL_bool.SDL_TRUE;
 
         }
 

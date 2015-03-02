@@ -25,7 +25,7 @@ Renderer.SetDrawColor(255, 0, 0, 255); //Red
 
 Renderer.DrawLine(0, 400, 600, 400);
 
-Renderer.Present();
+Renderer.RenderPresent();
 ```
 
 TODO:

@@ -15,20 +15,14 @@ namespace SDL2_CS_OO.Mixer
         public static void OpenAudio(ushort Format, int Channels, int ChunkSize)
         {
 
-            int Result = SDL_mixer.Mix_OpenAudio(SDL_mixer.MIX_DEFAULT_FREQUENCY, Format, Channels, ChunkSize);
-
-            if(Result != 0)
-                throw new SDLErrorException(Result);
+            Util.ThrowIfResultIsError(SDL_mixer.Mix_OpenAudio(SDL_mixer.MIX_DEFAULT_FREQUENCY, Format, Channels, ChunkSize));
 
         }
 
         public static void OpenAudio(int Frequerncy, ushort Format, int Channels, int ChunkSize)
         {
 
-            int Result = SDL_mixer.Mix_OpenAudio(Frequerncy, Format, Channels, ChunkSize);
-
-            if(Result != 0)
-                throw new SDLErrorException(Result);
+            Util.ThrowIfResultIsError(SDL_mixer.Mix_OpenAudio(Frequerncy, Format, Channels, ChunkSize));
 
         }
 

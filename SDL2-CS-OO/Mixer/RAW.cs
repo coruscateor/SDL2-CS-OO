@@ -13,14 +13,18 @@ namespace SDL2_CS_OO.Mixer
         public RAW(byte[] Mem)
         {
 
-            Util.ThrowIfPointerZero(SDL_mixer.Mix_QuickLoad_RAW(Mem, (uint)Mem.Length));
+            myPtr = SDL_mixer.Mix_QuickLoad_RAW(Mem, (uint)Mem.Length);
+
+            CheckPtr();
 
         }
 
         public RAW(byte[] Mem, int Len)
         {
 
-            Util.ThrowIfPointerZero(SDL_mixer.Mix_QuickLoad_RAW(Mem, (uint)Len));
+            myPtr = SDL_mixer.Mix_QuickLoad_RAW(Mem, (uint)Len);
+
+            CheckPtr();
 
         }
 

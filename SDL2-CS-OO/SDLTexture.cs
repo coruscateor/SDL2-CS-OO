@@ -75,8 +75,6 @@ namespace SDL2_CS_OO
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
 
-            Util.ThrowIfPointerZero(ptr);
-
             try
             {
 
@@ -96,8 +94,6 @@ namespace SDL2_CS_OO
         {
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
-
-            Util.ThrowIfPointerZero(ptr);
 
             try
             {
@@ -119,8 +115,6 @@ namespace SDL2_CS_OO
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
 
-            Util.ThrowIfPointerZero(ptr);
-
             try
             {
 
@@ -140,8 +134,6 @@ namespace SDL2_CS_OO
         {
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
-
-            Util.ThrowIfPointerZero(ptr);
 
             try
             {

@@ -7,6 +7,9 @@ using SDL2;
 namespace SDL2_CS_OO.Mixer
 {
 
+    /// <summary>
+    /// http://www.libsdl.org/projects/SDL_mixer/docs/SDL_mixer_toc.html#SEC_Contents
+    /// </summary>
     public abstract class Chunk : SDLObject, IDisposable
     {
 

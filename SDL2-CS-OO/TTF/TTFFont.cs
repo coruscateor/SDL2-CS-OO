@@ -204,12 +204,7 @@ namespace SDL2_CS_OO.TTF
 
         //Rendering
 
-        public IntPtr RenderText_SolidPtr(string Text, SDL.SDL_Color Fg)
-        {
-
-            return SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
-
-        }
+        //RenderText_Solid
 
         public SDLSurface RenderText_Solid(string Text, SDL.SDL_Color Fg)
         {
@@ -218,17 +213,215 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderUTF8_SolidPtr(string Text, SDL.SDL_Color Fg)
+        public IntPtr RenderText_SolidPtr(string Text, SDL.SDL_Color Fg)
         {
 
-            return SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        //Texture
+
+        public SDLTexture RenderText_Solid_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderText_Solid_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderUTF8_Solid
 
         public SDLSurface RenderUTF8_Solid(string Text, SDL.SDL_Color Fg)
         {
 
             return new SDLSurface(SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg));
+
+        }
+
+        public IntPtr RenderUTF8_SolidPtr(string Text, SDL.SDL_Color Fg)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
+
+        }
+
+        //Texture
+
+        public SDLTexture RenderUTF8_Solid_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderUTF8_Solid_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderUNICODE_Solid
+
+        public SDLSurface RenderUNICODE_Solid(string Text, SDL.SDL_Color Fg)
+        {
+
+            return new SDLSurface(SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg));
 
         }
 
@@ -239,26 +432,93 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public SDLSurface RenderUNICODE_Solid(string Text, SDL.SDL_Color Fg)
+        //Texture
+
+        public SDLTexture RenderUNICODE_Solid_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
         {
 
-            return new SDLSurface(SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg));
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
 
-        public IntPtr RenderGlyph_SolidPtr(ushort Ch, SDL.SDL_Color Fg)
+        public SDLTexture RenderUNICODE_Solid_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
 
-        public IntPtr RenderGlyph_SolidPtr(char Ch, SDL.SDL_Color Fg)
+        public IntPtr RenderUNICODE_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
+
+        public IntPtr RenderUNICODE_Solid_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Solid(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderGlyph_Solid
 
         public SDLSurface RenderGlyph_Solid(ushort Ch, SDL.SDL_Color Fg)
         {
@@ -274,12 +534,199 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderText_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        public IntPtr RenderGlyph_SolidPtr(ushort Ch, SDL.SDL_Color Fg)
         {
 
-            return SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        public IntPtr RenderGlyph_SolidPtr(char Ch, SDL.SDL_Color Fg)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
+
+        }
+
+        //Texture
+
+        public SDLTexture RenderGlyph_Solid_Texture(ushort Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Solid_Texture(char Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Solid_Texture(ushort Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Solid_Texture(char Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Solid_TexturePtr(ushort Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Solid_TexturePtr(char Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Solid_TexturePtr(ushort Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Solid_TexturePtr(char Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Solid(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderText_Shaded
 
         public SDLSurface RenderText_Shaded(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
@@ -288,12 +735,104 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr Render_UTF8_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        public IntPtr RenderText_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
 
-            return SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+            IntPtr Result = SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        //Texture
+
+        public SDLTexture RenderText_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderText_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //Render_UTF8_Shaded
 
         public SDLSurface RenderUTF8_Shaded(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
@@ -302,12 +841,104 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr Render_UNICODE_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        public IntPtr RenderUTF8_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
 
-            return SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        //Texture
+
+        public SDLTexture RenderUTF8_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderUTF8_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //Render_UNICODE_Shaded
 
         public SDLSurface RenderUNICODE_Shaded(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
@@ -316,19 +947,104 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderGlyph_ShadedPtr(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        public IntPtr RenderUNICODE_ShadedPtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
 
-        public IntPtr RenderGlyph_ShadedPtr(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        //Texture
+
+        public SDLTexture RenderUNICODE_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
+
+        public SDLTexture RenderUNICODE_Shaded_Texture(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUNICODE_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUNICODE_Shaded_TexturePtr(string Text, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Shaded(myPtr, Text, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderGlyph_Shaded
 
         public SDLSurface RenderGlyph_Shaded(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
@@ -344,12 +1060,199 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderText_BlendedPtr(string Text, SDL.SDL_Color Fg)
+        public IntPtr RenderGlyph_ShadedPtr(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
         {
 
-            return SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        public IntPtr RenderGlyph_ShadedPtr(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
+
+        }
+
+        //Texture
+
+        public SDLTexture RenderGlyph_Shaded_Texture(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Shaded_Texture(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Shaded_Texture(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Shaded_Texture(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Shaded_TexturePtr(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Shaded_TexturePtr(ushort Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Shaded_TexturePtr(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Shaded_TexturePtr(char Ch, SDL.SDL_Color Fg, SDL.SDL_Color Bg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Shaded(myPtr, Ch, Fg, Bg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderText_Blended
 
         public SDLSurface RenderText_Blended(string Text, SDL.SDL_Color Fg)
         {
@@ -358,12 +1261,104 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderUTF8_BlendedPtr(string Text, SDL.SDL_Color Fg)
+        public IntPtr RenderText_BlendedPtr(string Text, SDL.SDL_Color Fg)
         {
 
-            return SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        //Texture
+
+        public SDLTexture RenderText_Blended_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderText_Blended_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderText_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderText_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderUTF8_Blended
 
         public SDLSurface RenderUTF8_Blended(string Text, SDL.SDL_Color Fg)
         {
@@ -371,13 +1366,105 @@ namespace SDL2_CS_OO.TTF
             return new SDLSurface(SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg));
 
         }
-
-        public IntPtr RenderUNICODE_BlendedPtr(string Text, SDL.SDL_Color Fg)
+        
+        public IntPtr RenderUTF8_BlendedPtr(string Text, SDL.SDL_Color Fg)
         {
 
-            return SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
+
+        //Texture
+
+        public SDLTexture RenderUTF8_Blended_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderUTF8_Blended_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUTF8_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUTF8_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderUNICODE_Blended
 
         public SDLSurface RenderUNICODE_Blended(string Text, SDL.SDL_Color Fg)
         {
@@ -386,19 +1473,104 @@ namespace SDL2_CS_OO.TTF
 
         }
 
-        public IntPtr RenderGlyph_BlendedPtr(ushort Ch, SDL.SDL_Color Fg)
+        public IntPtr RenderUNICODE_BlendedPtr(string Text, SDL.SDL_Color Fg)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
 
         }
 
-        public IntPtr RenderGlyph_BlendedPtr(char Ch, SDL.SDL_Color Fg)
+        //Texture
+
+        public SDLTexture RenderUNICODE_Blended_Texture(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
         {
 
-            return SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
+
+        public SDLTexture RenderUNICODE_Blended_Texture(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUNICODE_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderUNICODE_Blended_TexturePtr(string Text, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderUNICODE_Blended(myPtr, Text, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        //RenderGlyph_Blended
 
         public SDLSurface RenderGlyph_Blended(ushort Ch, SDL.SDL_Color Fg)
         {
@@ -411,6 +1583,198 @@ namespace SDL2_CS_OO.TTF
         {
 
             return new SDLSurface(SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg));
+
+        }
+
+        public IntPtr RenderGlyph_BlendedPtr(ushort Ch, SDL.SDL_Color Fg)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
+
+        }
+
+        public IntPtr RenderGlyph_BlendedPtr(char Ch, SDL.SDL_Color Fg)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            return Result;
+
+        }
+
+        //Texture
+
+        public SDLTexture RenderGlyph_Blended_Texture(ushort Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Blended_Texture(ushort Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Blended_Texture(char Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public SDLTexture RenderGlyph_Blended_Texture(char Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            try
+            {
+
+                return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Result));
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Blended_TexturePtr(ushort Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Blended_TexturePtr(ushort Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Blended_TexturePtr(char Ch, SDL.SDL_Color Fg, SDLRenderer Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
+
+        }
+
+        public IntPtr RenderGlyph_Blended_TexturePtr(char Ch, SDL.SDL_Color Fg, IntPtr Renderer)
+        {
+
+            IntPtr Result = SDL_ttf.TTF_RenderGlyph_Blended(myPtr, Ch, Fg);
+
+            Util.ThrowIfPointerZero(Result);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, Result);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(Result);
+
+            }
 
         }
 

@@ -14,6 +14,8 @@ namespace SDL2_CS_OO
 
             myPtr = Ptr;
 
+            CheckPtr();
+
         }
 
         public SDLWindow(string TheTitle)
@@ -51,6 +53,13 @@ namespace SDL2_CS_OO
             myPtr = SDL.SDL_CreateWindow(TheTitle, x, y, w, h, TheFlags);
 
             CheckPtr();
+
+        }
+
+        public static SDLWindow CreateFrom(IntPtr Data)
+        {
+
+            return new SDLWindow(SDL.SDL_CreateWindowFrom(Data));
 
         }
 
@@ -427,8 +436,6 @@ namespace SDL2_CS_OO
         {
 
             IntPtr Result = SDL.SDL_GL_CreateContext(myPtr);
-
-            Util.ThrowIfPointerZero(Result);
 
             return new SDL_GLContext(Result);
 

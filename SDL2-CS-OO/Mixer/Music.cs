@@ -15,6 +15,8 @@ namespace SDL2_CS_OO.Mixer
 
             myPtr = SDL_mixer.Mix_LoadMUS(File);
 
+            CheckPtr();
+
         }
 
         public static bool Playing

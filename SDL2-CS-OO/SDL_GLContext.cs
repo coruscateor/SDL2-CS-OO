@@ -13,6 +13,8 @@ namespace SDL2_CS_OO
 
             myPtr = ThePtr;
 
+            CheckPtr();
+
         }
 
         ~SDL_GLContext()
