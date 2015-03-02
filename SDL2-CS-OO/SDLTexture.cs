@@ -16,15 +16,6 @@ namespace SDL2_CS_OO
 
         }
 
-        public SDLTexture(IntPtr Renderer, uint Format, int Access, int W, int H)
-        {
-
-            myPtr = SDL.SDL_CreateTexture(Renderer, Format, Access, W, H);
-
-            CheckPtr();
-
-        }
-
         public SDLTexture(SDLRenderer Renderer, uint Format, int Access, int W, int H)
         {
 
@@ -34,28 +25,10 @@ namespace SDL2_CS_OO
 
         }
 
-        public SDLTexture(IntPtr Renderer, IntPtr Surface)
+        public SDLTexture(IntPtr Renderer, uint Format, int Access, int W, int H)
         {
 
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface);
-
-            CheckPtr();
-
-        }
-
-        public SDLTexture(IntPtr Renderer, SDLSurface Surface)
-        {
-
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface.Ptr);
-
-            CheckPtr();
-
-        }
-
-        public SDLTexture(SDLRenderer Renderer, IntPtr Surface)
-        {
-
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface);
+            myPtr = SDL.SDL_CreateTexture(Renderer, Format, Access, W, H);
 
             CheckPtr();
 
@@ -70,23 +43,30 @@ namespace SDL2_CS_OO
 
         }
 
-        public static SDLTexture LoadBMP(IntPtr Renderer, string File)
+        public SDLTexture(SDLRenderer Renderer, IntPtr Surface)
         {
 
-            IntPtr ptr = SDL.SDL_LoadBMP(File);
+            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface);
 
-            try
-            {
+            CheckPtr();
 
-                return new SDLTexture(Renderer, ptr);
+        }
 
-            }
-            finally
-            {
+        public SDLTexture(IntPtr Renderer, SDLSurface Surface)
+        {
 
-                SDL.SDL_FreeSurface(ptr);
+            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface.Ptr);
 
-            }
+            CheckPtr();
+
+        }
+
+        public SDLTexture(IntPtr Renderer, IntPtr Surface)
+        {
+
+            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface);
+
+            CheckPtr();
 
         }
 
@@ -110,7 +90,27 @@ namespace SDL2_CS_OO
 
         }
 
-        public static IntPtr LoadBMPPtr(IntPtr Renderer, string File)
+        public static SDLTexture LoadBMP(IntPtr Renderer, string File)
+        {
+
+            IntPtr ptr = SDL.SDL_LoadBMP(File);
+
+            try
+            {
+
+                return new SDLTexture(Renderer, ptr);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(ptr);
+
+            }
+
+        }
+
+        public static IntPtr LoadBMPPtr(SDLRenderer Renderer, string File)
         {
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
@@ -130,7 +130,8 @@ namespace SDL2_CS_OO
 
         }
 
-        public static IntPtr LoadBMPPtr(SDLRenderer Renderer, string File)
+
+        public static IntPtr LoadBMPPtr(IntPtr Renderer, string File)
         {
 
             IntPtr ptr = SDL.SDL_LoadBMP(File);
