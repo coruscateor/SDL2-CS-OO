@@ -70,46 +70,6 @@ namespace SDL2_CS_OO
 
         }
 
-        public static IntPtr LoadBMPPtr(IntPtr Renderer, string File)
-        {
-
-            IntPtr ptr = SDL.SDL_LoadBMP(File);
-
-            try
-            {
-
-                return new SDLTexture(Renderer, ptr);
-
-            }
-            finally
-            {
-
-                SDL.SDL_FreeSurface(ptr);
-
-            }
-
-        }
-
-        public static IntPtr LoadBMPPtr(SDLRenderer Renderer, string File)
-        {
-
-            IntPtr ptr = SDL.SDL_LoadBMP(File);
-
-            try
-            {
-
-                return new SDLTexture(Renderer, ptr);
-
-            }
-            finally
-            {
-
-                SDL.SDL_FreeSurface(ptr);
-
-            }
-
-        }
-
         public static SDLTexture LoadBMP(IntPtr Renderer, string File)
         {
 
@@ -139,6 +99,46 @@ namespace SDL2_CS_OO
             {
 
                 return new SDLTexture(Renderer, ptr);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(ptr);
+
+            }
+
+        }
+
+        public static IntPtr LoadBMPPtr(IntPtr Renderer, string File)
+        {
+
+            IntPtr ptr = SDL.SDL_LoadBMP(File);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, ptr);
+
+            }
+            finally
+            {
+
+                SDL.SDL_FreeSurface(ptr);
+
+            }
+
+        }
+
+        public static IntPtr LoadBMPPtr(SDLRenderer Renderer, string File)
+        {
+
+            IntPtr ptr = SDL.SDL_LoadBMP(File);
+
+            try
+            {
+
+                return SDL.SDL_CreateTextureFromSurface(Renderer, ptr);
 
             }
             finally
