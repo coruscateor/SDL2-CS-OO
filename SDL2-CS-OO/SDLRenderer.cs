@@ -7,28 +7,28 @@ namespace SDL2_CS_OO
     public sealed class SDLRenderer : SDLObject, IDisposable
     {
 
-        public SDLRenderer(IntPtr TheSurfacePtr)
+        public SDLRenderer(IntPtr SurfacePtr)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(TheSurfacePtr, 0, (uint)SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
+            myPtr = SDL.SDL_CreateRenderer(SurfacePtr, 0, (uint)SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
 
             CheckPtr();
 
         }
 
-        public SDLRenderer(IntPtr TheWindowPtr, SDL.SDL_RendererFlags TheFlags)
+        public SDLRenderer(IntPtr WindowPtr, SDL.SDL_RendererFlags Flags)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(TheWindowPtr, -1, (uint)TheFlags);
+            myPtr = SDL.SDL_CreateRenderer(WindowPtr, -1, (uint)Flags);
 
             CheckPtr();
 
         }
 
-        public SDLRenderer(IntPtr TheWindowPtr, int TheIndex, SDL.SDL_RendererFlags TheFlags)
+        public SDLRenderer(IntPtr WindowPtr, int Index, SDL.SDL_RendererFlags Flags)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(TheWindowPtr, TheIndex, (uint)TheFlags);
+            myPtr = SDL.SDL_CreateRenderer(WindowPtr, Index, (uint)Flags);
 
             CheckPtr();
 
@@ -41,21 +41,21 @@ namespace SDL2_CS_OO
 
         }
 
-        public void GetDrawBlendMode(out SDL.SDL_BlendMode TheBlendMode)
+        public void GetRenderDrawBlendMode(out SDL.SDL_BlendMode BlendMode)
         {
 
-            Util.ThrowIfResultIsError(SDL.SDL_GetRenderDrawBlendMode(myPtr, out TheBlendMode));
+            Util.ThrowIfResultIsError(SDL.SDL_GetRenderDrawBlendMode(myPtr, out BlendMode));
 
         }
 
-        public void GetDrawColor(out byte R, out byte G, out byte B, out byte A)
+        public void GetRenderDrawColor(out byte R, out byte G, out byte B, out byte A)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_GetRenderDrawColor(myPtr, out R, out G, out B, out A));
 
         }
 
-        public void Clear()
+        public void RenderClear()
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderClear(myPtr));
@@ -76,49 +76,49 @@ namespace SDL2_CS_OO
 
         }
 
-        public void Copy(IntPtr Texture, IntPtr Dstrect)
+        public void RenderCopy(IntPtr Texture, IntPtr Dstrect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopy(myPtr, Texture, IntPtr.Zero, Dstrect));
 
         }
 
-        public void Copy(IntPtr Texture, ref SDL.SDL_Rect Dstrect)
+        public void RenderCopy(IntPtr Texture, ref SDL.SDL_Rect Dstrect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopy(myPtr, Texture, IntPtr.Zero, ref Dstrect));
 
         }
 
-        public void Copy(IntPtr Texture, IntPtr Srcrect, IntPtr Dstrect)
+        public void RenderCopy(IntPtr Texture, IntPtr Srcrect, IntPtr Dstrect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopy(myPtr, Texture, Srcrect, Dstrect));
 
         }
 
-        public void Copy(IntPtr Texture, IntPtr Srcrect, ref SDL.SDL_Rect Dstrect)
+        public void RenderCopy(IntPtr Texture, IntPtr Srcrect, ref SDL.SDL_Rect Dstrect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopy(myPtr, Texture, Srcrect, ref Dstrect));
 
         }
 
-        public void Copy(SDLTexture Texture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect)
+        public void RenderCopy(SDLTexture Texture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopy(myPtr, Texture.Ptr, ref Srcrect, ref Dstrect));
 
         }
 
-        public void CopyEx(IntPtr TheTexture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect, double Angle, ref SDL.SDL_Point Center, SDL.SDL_RendererFlip Flip)
+        public void RenderCopyEx(IntPtr TheTexture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect, double Angle, ref SDL.SDL_Point Center, SDL.SDL_RendererFlip Flip)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopyEx(myPtr, TheTexture, ref Srcrect, ref Dstrect, Angle, ref Center, Flip));
 
         }
 
-        public void CopyEx(SDLTexture TheTexture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect, double Angle, ref SDL.SDL_Point Center, SDL.SDL_RendererFlip Flip)
+        public void RenderCopyEx(SDLTexture TheTexture, ref SDL.SDL_Rect Srcrect, ref SDL.SDL_Rect Dstrect, double Angle, ref SDL.SDL_Point Center, SDL.SDL_RendererFlip Flip)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderCopyEx(myPtr, TheTexture.Ptr, ref Srcrect, ref Dstrect, Angle, ref Center, Flip));
@@ -293,7 +293,7 @@ namespace SDL2_CS_OO
 
         }
 
-        public void SetViewPort(ref SDL.SDL_Rect Rect)
+        public void SetViewport(ref SDL.SDL_Rect Rect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderSetViewport(myPtr, ref Rect));

@@ -34,40 +34,59 @@ namespace SDL2_CS_OO
 
         }
 
-        public SDLTexture(SDLRenderer Renderer, SDLSurface Surface)
+        public SDLTexture(SDLRenderer Renderer, ref SDL.SDL_PixelFormat Format, int Access, int W, int H)
         {
 
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface.Ptr);
+            myPtr = SDL.SDL_CreateTexture(Renderer.Ptr, Format.format, Access, W, H);
 
             CheckPtr();
 
         }
 
-        public SDLTexture(SDLRenderer Renderer, IntPtr Surface)
+        public SDLTexture(SDLRenderer Renderer, uint Format, SDL.SDL_TextureAccess Access, int W, int H)
         {
 
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface);
+            myPtr = SDL.SDL_CreateTexture(Renderer.Ptr, Format, (int)Access, W, H);
 
             CheckPtr();
 
         }
 
-        public SDLTexture(IntPtr Renderer, SDLSurface Surface)
+        public SDLTexture(SDLRenderer Renderer, ref SDL.SDL_PixelFormat Format, SDL.SDL_TextureAccess Access, int W, int H)
         {
 
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface.Ptr);
+            myPtr = SDL.SDL_CreateTexture(Renderer.Ptr, Format.format, (int)Access, W, H);
 
             CheckPtr();
 
         }
 
-        public SDLTexture(IntPtr Renderer, IntPtr Surface)
+        public static SDLTexture CreateFromSurface(SDLRenderer Renderer, SDLSurface Surface)
         {
 
-            myPtr = SDL.SDL_CreateTextureFromSurface(Renderer, Surface);
+            return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface.Ptr));
 
-            CheckPtr();
+        }
 
+        public static SDLTexture CreateFromSurface(SDLRenderer Renderer, IntPtr Surface)
+        {
+
+            return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer.Ptr, Surface));
+
+        }
+
+        public static SDLTexture CreateFromSurface(IntPtr Renderer, SDLSurface Surface)
+        {
+
+            return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Surface.Ptr));
+
+        }
+
+        public static SDLTexture CreateFromSurface(IntPtr Renderer, IntPtr Surface)
+        {
+
+            return new SDLTexture(SDL.SDL_CreateTextureFromSurface(Renderer, Surface));
+            
         }
 
         public static SDLTexture LoadBMP(SDLRenderer Renderer, string File)
@@ -78,7 +97,7 @@ namespace SDL2_CS_OO
             try
             {
 
-                return new SDLTexture(Renderer, ptr);
+                return CreateFromSurface(Renderer, ptr);
 
             }
             finally
@@ -98,7 +117,7 @@ namespace SDL2_CS_OO
             try
             {
 
-                return new SDLTexture(Renderer, ptr);
+                return CreateFromSurface(Renderer, ptr);
 
             }
             finally
