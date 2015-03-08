@@ -7,28 +7,46 @@ namespace SDL2_CS_OO
     public sealed class SDLRenderer : SDLObject, IDisposable
     {
 
-        public SDLRenderer(IntPtr SurfacePtr)
+        public SDLRenderer(IntPtr Renderer)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(SurfacePtr, 0, (uint)SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
+            myPtr = Renderer;
 
             CheckPtr();
 
         }
 
-        public SDLRenderer(IntPtr WindowPtr, SDL.SDL_RendererFlags Flags)
+        public SDLRenderer(IntPtr Window, uint Flags)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(WindowPtr, -1, (uint)Flags);
+            myPtr = SDL.SDL_CreateRenderer(Window, -1, Flags);
 
             CheckPtr();
 
         }
 
-        public SDLRenderer(IntPtr WindowPtr, int Index, SDL.SDL_RendererFlags Flags)
+        public SDLRenderer(IntPtr Window, SDL.SDL_RendererFlags Flags)
         {
 
-            myPtr = SDL.SDL_CreateRenderer(WindowPtr, Index, (uint)Flags);
+            myPtr = SDL.SDL_CreateRenderer(Window, -1, (uint)Flags);
+
+            CheckPtr();
+
+        }
+
+        public SDLRenderer(IntPtr Window, int Index, uint Flags)
+        {
+
+            myPtr = SDL.SDL_CreateRenderer(Window, Index, Flags);
+
+            CheckPtr();
+
+        }
+
+        public SDLRenderer(IntPtr Window, int Index, SDL.SDL_RendererFlags Flags)
+        {
+
+            myPtr = SDL.SDL_CreateRenderer(Window, Index, (uint)Flags);
 
             CheckPtr();
 
@@ -52,6 +70,63 @@ namespace SDL2_CS_OO
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_GetRenderDrawColor(myPtr, out R, out G, out B, out A));
+
+        }
+
+        public void GetOutputSize(out int W, out int H)
+        {
+
+            Util.ThrowIfResultIsError(SDL.SDL_GetRendererOutputSize(myPtr, out W, out H));
+
+        }
+
+        public bool TryGetRenderTarget(out SDLTexture Texture)
+        {
+
+            IntPtr Result = SDL.SDL_GetRenderTarget(myPtr);
+
+            if(Result == IntPtr.Zero)
+            {
+
+                Texture = null;
+
+                return false;
+
+            }
+
+            Texture = new SDLTexture(Result);
+
+            return true;
+
+        }
+
+        public bool TryGetRenderTarget(out IntPtr Texture)
+        {
+
+            Texture = SDL.SDL_GetRenderTarget(myPtr);
+
+            return Texture != IntPtr.Zero;
+
+        }
+
+        public bool IsRenderTarget(SDLTexture Texture)
+        {
+
+            return Texture == SDL.SDL_GetRenderTarget(myPtr);
+
+        }
+
+        public bool IsRenderTarget(IntPtr Texture)
+        {
+
+            return Texture == SDL.SDL_GetRenderTarget(myPtr);
+
+        }
+
+        public bool RenderTargetIsDefault()
+        {
+
+            return SDL.SDL_GetRenderTarget(myPtr) == IntPtr.Zero;
 
         }
 
@@ -244,7 +319,7 @@ namespace SDL2_CS_OO
 
         }
 
-        public void GetViewPort(out SDL.SDL_Rect Rect)
+        public void GetViewport(out SDL.SDL_Rect Rect)
         {
 
             Util.ThrowIfResultIsError(SDL.SDL_RenderGetViewport(myPtr, out Rect));

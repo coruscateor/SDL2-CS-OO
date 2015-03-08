@@ -18,10 +18,28 @@ namespace SDL2_CS_OO
 
         }
 
-        public SDLWindow(string TheTitle)
+        public SDLWindow(string Title)
         {
 
             SDL.SDL_WindowFlags Flags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_RESIZABLE;
+
+            myPtr = SDL.SDL_CreateWindow(Title, SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 480, 680, Flags);
+
+            CheckPtr();
+
+        }
+
+        public SDLWindow(SDL.SDL_WindowFlags Flags)
+        {
+
+            myPtr = SDL.SDL_CreateWindow("", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 480, 680, Flags);
+
+            CheckPtr();
+
+        }
+
+        public SDLWindow(string TheTitle, SDL.SDL_WindowFlags Flags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_RESIZABLE)
+        {
 
             myPtr = SDL.SDL_CreateWindow(TheTitle, SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 480, 680, Flags);
 
@@ -29,28 +47,10 @@ namespace SDL2_CS_OO
 
         }
 
-        public SDLWindow(SDL.SDL_WindowFlags TheFlags)
+        public SDLWindow(string Title = "", int x = SDL.SDL_WINDOWPOS_UNDEFINED, int y = SDL.SDL_WINDOWPOS_UNDEFINED, int w = 480, int h = 640, SDL.SDL_WindowFlags TheFlags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_RESIZABLE)
         {
 
-            myPtr = SDL.SDL_CreateWindow("", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 480, 680, TheFlags);
-
-            CheckPtr();
-
-        }
-
-        public SDLWindow(string TheTitle, SDL.SDL_WindowFlags TheFlags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_RESIZABLE)
-        {
-
-            myPtr = SDL.SDL_CreateWindow(TheTitle, SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 480, 680, TheFlags);
-
-            CheckPtr();
-
-        }
-
-        public SDLWindow(string TheTitle = "", int x = SDL.SDL_WINDOWPOS_UNDEFINED, int y = SDL.SDL_WINDOWPOS_UNDEFINED, int w = 480, int h = 640, SDL.SDL_WindowFlags TheFlags = SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN | SDL.SDL_WindowFlags.SDL_WINDOW_RESIZABLE)
-        {
-
-            myPtr = SDL.SDL_CreateWindow(TheTitle, x, y, w, h, TheFlags);
+            myPtr = SDL.SDL_CreateWindow(Title, x, y, w, h, TheFlags);
 
             CheckPtr();
 
@@ -81,6 +81,62 @@ namespace SDL2_CS_OO
         {
 
             return SDL.SDL_GetRenderer(myPtr);
+
+        }
+
+        public SDLRenderer CreateRenderer(uint Flags)
+        {
+
+            return new SDLRenderer(myPtr, Flags);
+
+        }
+
+        public IntPtr CreateRendererPtr(uint Flags)
+        {
+
+            return SDL.SDL_CreateRenderer(myPtr, -1, Flags);
+
+        }
+
+        public SDLRenderer CreateRenderer(SDL.SDL_RendererFlags Flags)
+        {
+
+            return new SDLRenderer(myPtr, Flags);
+
+        }
+
+        public IntPtr CreateRendererPtr(SDL.SDL_RendererFlags Flags)
+        {
+
+            return SDL.SDL_CreateRenderer(myPtr, -1, (uint)Flags);
+
+        }
+
+        public SDLRenderer CreateRenderer(int Index, uint Flags)
+        {
+
+            return new SDLRenderer(myPtr, Index, Flags);
+
+        }
+
+        public IntPtr CreateRendererPtr(int Index, uint Flags)
+        {
+
+            return SDL.SDL_CreateRenderer(myPtr, Index, Flags);
+
+        }
+
+        public SDLRenderer CreateRenderer(int Index, SDL.SDL_RendererFlags Flags)
+        {
+
+            return new SDLRenderer(myPtr, Index, Flags);
+
+        }
+        
+        public IntPtr CreateRendererPtr(int Index, SDL.SDL_RendererFlags Flags)
+        {
+
+            return SDL.SDL_CreateRenderer(myPtr, Index, (uint)Flags);
 
         }
 
